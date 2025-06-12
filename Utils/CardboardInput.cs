@@ -1,6 +1,3 @@
-using UnityEngine;
-using GorillaLocomotion;
-using Valve.VR;
 using UnityEngine.XR;
 
 namespace Cardboard.Utils
@@ -14,38 +11,24 @@ namespace Cardboard.Utils
         /// <returns>A bool based on if the button is pressed.</returns>
         public static bool GetValue(InputType _inputType)
         {
-            bool temporarySClick = false;
+            bool value = false;
 
             switch (_inputType)
             {
-                // left hand
-                case InputType.leftPrimary: return ControllerInputPoller.instance.leftControllerPrimaryButton;
-                case InputType.leftSecondary: return ControllerInputPoller.instance.leftControllerSecondaryButton;
-                case InputType.leftTrigger: return ControllerInputPoller.instance.leftControllerIndexFloat > 0.5f;
-                case InputType.leftGrip: return ControllerInputPoller.instance.leftControllerGripFloat > 0.5f;
-                case InputType.leftStick:
-                    if (Player.Steam)
-                        temporarySClick = SteamVR_Actions.gorillaTag_LeftJoystickClick.state;
-                    else
-                        InputDevices.GetDeviceAtXRNode(XRNode.LeftHand).TryGetFeatureValue(UnityEngine.XR.CommonUsages.primary2DAxisClick, out temporarySClick);
+                case InputType.leftPrimary: InputDevices.GetDeviceAtXRNode(XRNode.LeftHand).TryGetFeatureValue(CommonUsages.primaryButton, out value); break;
+                case InputType.leftSecondary: InputDevices.GetDeviceAtXRNode(XRNode.LeftHand).TryGetFeatureValue(CommonUsages.secondaryButton, out value); break;
+                case InputType.leftTrigger: InputDevices.GetDeviceAtXRNode(XRNode.LeftHand).TryGetFeatureValue(CommonUsages.triggerButton, out value); break;
+                case InputType.leftGrip: InputDevices.GetDeviceAtXRNode(XRNode.LeftHand).TryGetFeatureValue(CommonUsages.gripButton, out value); break;
+                case InputType.leftStick: InputDevices.GetDeviceAtXRNode(XRNode.LeftHand).TryGetFeatureValue(CommonUsages.primary2DAxisClick, out value); break;
 
-                    return temporarySClick;
-
-                // right hand
-                case InputType.rightPrimary: return ControllerInputPoller.instance.rightControllerPrimaryButton;
-                case InputType.rightSecondary: return ControllerInputPoller.instance.rightControllerSecondaryButton;
-                case InputType.rightTrigger: return ControllerInputPoller.instance.rightControllerIndexFloat > 0.5f;
-                case InputType.rightGrip: return ControllerInputPoller.instance.rightControllerGripFloat > 0.5f;
-                case InputType.rightStick:
-                    if (Player.Steam)
-                        temporarySClick = SteamVR_Actions.gorillaTag_RightJoystickClick.state;
-                    else
-                        InputDevices.GetDeviceAtXRNode(XRNode.RightHand).TryGetFeatureValue(UnityEngine.XR.CommonUsages.primary2DAxisClick, out temporarySClick);
-
-                    return temporarySClick;
+                case InputType.rightPrimary: InputDevices.GetDeviceAtXRNode(XRNode.RightHand).TryGetFeatureValue(CommonUsages.primaryButton, out value); break;
+                case InputType.rightSecondary: InputDevices.GetDeviceAtXRNode(XRNode.RightHand).TryGetFeatureValue(CommonUsages.secondaryButton, out value); break;
+                case InputType.rightTrigger: InputDevices.GetDeviceAtXRNode(XRNode.RightHand).TryGetFeatureValue(CommonUsages.triggerButton, out value); break;
+                case InputType.rightGrip: InputDevices.GetDeviceAtXRNode(XRNode.RightHand).TryGetFeatureValue(CommonUsages.gripButton, out value); break;
+                case InputType.rightStick: InputDevices.GetDeviceAtXRNode(XRNode.LeftHand).TryGetFeatureValue(CommonUsages.primary2DAxisClick, out value); break;
             }
 
-            return false;
+            return value;
         }
     }
 }

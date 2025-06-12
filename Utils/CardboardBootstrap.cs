@@ -1,5 +1,4 @@
-﻿using BepInEx;
-using BepInEx.Bootstrap;
+﻿using BepInEx.Unity.IL2CPP;
 
 namespace Cardboard.Utils
 {
@@ -15,7 +14,7 @@ namespace Cardboard.Utils
         /// <returns>Bool signifying if mod installed</returns>
         public static bool Installed(string _UUID)
         {
-            foreach (string UUID in Chainloader.PluginInfos.Keys) { if (UUID == _UUID) return true; break; }
+            foreach (string UUID in IL2CPPChainloader.Instance.Plugins.Keys) { if (UUID == _UUID) return true; break; }
             return false;
         }
     }

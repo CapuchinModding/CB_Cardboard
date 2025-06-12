@@ -1,8 +1,6 @@
 using HarmonyLib;
-using BepInEx;
 using System.Reflection;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Cardboard.Utils
 {
@@ -12,19 +10,6 @@ namespace Cardboard.Utils
     public class CardboardHarmony
     {
         private static Dictionary<Assembly, Harmony> patchedInstances = new Dictionary<Assembly, Harmony>();
-        /// <summary>
-        /// Patches the BaseUnityPlugin provided and returns the Harmony class used to patch the plugin.
-        /// </summary>
-        /// <param name="_instance">The BaseUnityPlugin to patch.</param>
-        /// <returns>The Harmony instance that was used to patch it.</returns>
-        public static Harmony PatchInstance(BaseUnityPlugin _instance)
-        {
-            Harmony thisHarmony = new Harmony(_instance.Info.Metadata.GUID);
-            thisHarmony.PatchAll(Assembly.GetCallingAssembly());
-            patchedInstances.Add(Assembly.GetCallingAssembly(), thisHarmony);
-
-            return thisHarmony;
-        }
 
         /// <summary>
         /// Patches the assembly based on the GUID provided and returns the Harmony class used to patch the plugin.

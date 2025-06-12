@@ -1,20 +1,24 @@
 using BepInEx;
+using BepInEx.Unity.IL2CPP;
+
 using UnityEngine;
+
 using Cardboard.Utils;
 using Cardboard.Internals;
 
 namespace Cardboard.Start
 {
-    [BepInPlugin("kingbingus.cardboard", "Cardboard", "1.0.0")]
-    public class Bootstrap : BaseUnityPlugin
+    [BepInPlugin("bingus.cbcapuchin", "CB_Capuchin", "1.0.0")]
+    public class Bootstrap : BasePlugin
     {
         public static Bootstrap instance;
 
-        void Start()
+        public override void Load()
         {
             instance = this;
-            CardboardHarmony.PatchInstance(this);
-            new GameObject("CardboardManager", typeof(CardboardManager));
+
+            CardboardHarmony.PatchInstance("bingus.cbcapuchin");
+            new GameObject("CardboardManager").AddComponent<CardboardManager>();
         }
     }
 }

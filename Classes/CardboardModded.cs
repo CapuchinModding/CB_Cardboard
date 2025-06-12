@@ -1,12 +1,4 @@
 using System;
-using System.Reflection;
-using System.Collections.Generic;
-using UnityEngine;
-using Cardboard.Utils;
-
-using Photon.Pun;
-using GorillaNetworking;
-using System.Linq;
 
 namespace Cardboard.Classes
 {

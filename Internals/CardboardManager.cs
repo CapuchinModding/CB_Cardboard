@@ -1,7 +1,4 @@
 ﻿using UnityEngine;
-using Cardboard.Start;
-using System.Collections.Generic;
-using Cardboard.Classes;
 
 namespace Cardboard.Internals
 {

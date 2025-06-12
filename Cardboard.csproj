@@ -18,8 +18,32 @@
 		<Reference Include="Assembly-CSharp">
 		  <HintPath>$(GameAssemblyPath)\Assembly-CSharp.dll</HintPath>
 		</Reference>
-		<Reference Include="BepInEx">
-		  <HintPath>$(BepInExAssemblyPath)\BepInEx.dll</HintPath>
+		<Reference Include="BepInEx.Core">
+		  <HintPath>$(BepInExAssemblyPath)\BepInEx.Core.dll</HintPath>
+		</Reference>
+		<Reference Include="BepInEx.Preloader.Core">
+		  <HintPath>$(BepInExAssemblyPath)\BepInEx.Preloader.Core.dll</HintPath>
+		</Reference>
+		<Reference Include="BepInEx.Unity.Common">
+		  <HintPath>$(BepInExAssemblyPath)\BepInEx.Unity.Common.dll</HintPath>
+		</Reference>
+		<Reference Include="BepInEx.Unity.IL2CPP">
+		  <HintPath>$(BepInExAssemblyPath)\BepInEx.Unity.IL2CPP.dll</HintPath>
+		</Reference>
+		<Reference Include="Il2CppInterop.Common">
+		  <HintPath>$(BepInExAssemblyPath)\Il2CppInterop.Common.dll</HintPath>
+		</Reference>
+		<Reference Include="Il2CppInterop.Generator">
+		  <HintPath>$(BepInExAssemblyPath)\Il2CppInterop.Generator.dll</HintPath>
+		</Reference>
+		<Reference Include="Il2CppInterop.HarmonySupport">
+		  <HintPath>$(BepInExAssemblyPath)\Il2CppInterop.HarmonySupport.dll</HintPath>
+		</Reference>
+		<Reference Include="Il2CppInterop.Runtime">
+		  <HintPath>$(BepInExAssemblyPath)\Il2CppInterop.Runtime.dll</HintPath>
+		</Reference>
+		<Reference Include="Il2Cppmscorlib">
+		  <HintPath>$(GameAssemblyPath)\Il2Cppmscorlib.dll</HintPath>
 		</Reference>
 		<Reference Include="Meta.XR.BuildingBlocks">
 		  <HintPath>$(GameAssemblyPath)\Meta.XR.BuildingBlocks.dll</HintPath>
@@ -60,20 +84,11 @@
 		<Reference Include="UnityEngine.UI">
 		  <HintPath>$(GameAssemblyPath)\UnityEngine.UI.dll</HintPath>
 		</Reference>
-		<Reference Include="UnityEngine.XR.LegacyInputHelpers">
-		  <HintPath>$(GameAssemblyPath)\UnityEngine.XR.LegacyInputHelpers.dll</HintPath>
-		</Reference>
 		<Reference Include="UnityEngine.XRModule">
 		  <HintPath>$(GameAssemblyPath)\UnityEngine.XRModule.dll</HintPath>
 		</Reference>
 		<Reference Include="UnityEngine.InputLegacyModule">
 		  <HintPath>$(GameAssemblyPath)\UnityEngine.InputLegacyModule.dll</HintPath>
-		</Reference>
-		<Reference Include="SteamVR">
-		  <HintPath>$(GameAssemblyPath)\SteamVR.dll</HintPath>
-		</Reference>
-		<Reference Include="SteamVR_Actions">
-		  <HintPath>$(GameAssemblyPath)\SteamVR_Actions.dll</HintPath>
 		</Reference>
 	</ItemGroup>
 </Project>

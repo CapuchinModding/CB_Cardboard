@@ -14,7 +14,16 @@ namespace Cardboard.Utils
         /// <returns>The instantiated GameObject.</returns>
         public static GameObject Load(string _path, string _name)
         {
-            AssetBundle AB = AssetBundle.LoadFromStream(Assembly.GetCallingAssembly().GetManifestResourceStream(_path));
+            Stream stream = Assembly.GetCallingAssembly().GetManifestResourceStream(_path);
+            byte[] streamBytes = null;
+
+            using (var memoryStream = new MemoryStream())
+            {
+                stream.CopyTo(memoryStream);
+                streamBytes = memoryStream.ToArray();
+            }
+
+            AssetBundle AB = AssetBundle.LoadFromMemory(streamBytes);
             Object obj = AB.LoadAsset(_name);
             AB.Unload(false);
 

@@ -48,23 +48,18 @@ Patches the `BaseUnityPlugin` provided and returns the `Harmony` class used to p
 
 - **Example**:
     ```cs
-    using Cardboard.Utils;
-    using BepInEx;
-
     [BepInPlugin("modauthor.modname", "Mod Name", "1.0.0")]
-    public class MyMod : BaseUnityPlugin
+    public class MyMod : BasePlugin
     {
         Harmony thisHarmony;
 
         void Start() {
-            // Hand it the currently executing BaseUnityPlugin. Check overloads for all the ways you can call PatchInstance.
-            thisHarmony = CardboardHarmony.PatchInstance(this);
+            thisHarmony = CardboardHarmony.PatchInstance("my.uuid");
         }
     }
     ```
 
 - **Overloads**:
-    - ``PatchInstance(BepInPlugin _instance)``
     - ``PatchInstance(string _UUID)``
 
 ### `void` `CardboardHarmony.UnpatchInstance(Harmony _instance)`
@@ -75,15 +70,8 @@ Patches the `BaseUnityPlugin` provided and returns the `Harmony` class used to p
     Harmony thisInstance;
 
     void OnEnable() => thisInstance = CardboardHarmony.PatchInstance(this);
-
-    // Only implemented when using CI/GorillaComputer
-    void OnDisable() => CardboardHarmony.UnpatchInstance(thisInstance);
+    void OnDisable() => CardboardHarmony.UnpatchInstance(thisInstance)
     ```
-## Player
-Player-based stuff.
-### `bool` `Steam`
-- **Description**: Value representing if the player is playing on SteamVR. `false` if playing on Oculus Rift.
-- **Example**: No.
 
 ## Input
 Handles controller inputs.

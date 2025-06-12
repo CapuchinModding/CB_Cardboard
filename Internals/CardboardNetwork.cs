@@ -1,11 +1,25 @@
-﻿using Photon.Pun;
-using Cardboard.Classes;
+﻿using Cardboard.Classes;
+using HarmonyLib;
+using Photon.Pun;
 
 namespace Cardboard.Internals
 {
     public class CardboardNetwork : MonoBehaviourPunCallbacks
     {
-        public override void OnJoinedRoom() => NetworkSystem.Instance.GameModeString.Contains("MODDED_") ? CardboardModded.CallModdedEvent(ModdedEventType.ModdedJoin);
-        public override void OnLeftRoom() => CardboardModded.CallModdedEvent(ModdedEventType.ModdedLeave);
+        [HarmonyPatch(typeof(FusionHub), "JoinedRoom")]
+        public class FusionNetworkJoin
+        {
+            // why does it made me do it like this?
+            static void Postfix()
+            {
+                if (FusionHub.currentQueue.ToLower().Contains("modded")) { CardboardModded.CallModdedEvent(ModdedEventType.ModdedJoin); }
+            }
+        }
+
+        [HarmonyPatch(typeof(FusionHub), "Leave")]
+        public class FusionNetworkLeave
+        {
+            static void Postfix() => CardboardModded.CallModdedEvent(ModdedEventType.ModdedLeave);
+        }
     }
 }
